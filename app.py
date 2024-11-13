@@ -4,9 +4,19 @@ import numpy as np
 import pickle
 import time
 from sklearn.preprocessing import LabelEncoder
+import gdown
+import os
+import pickle
 
-# Load the trained model
-with open('best_model.pkl', 'rb') as file:
+file_id = "1E19JGvSKjmcALANyM81cNgbsj2al8MSP"
+model_path = "best_model.pkl"
+
+# Check if the model file already exists
+if not os.path.exists(model_path):
+    gdown.download(f"https://drive.google.com/uc?id={file_id}", model_path, quiet=False)
+
+# Load the model
+with open(model_path, 'rb') as file:
     model = pickle.load(file)
 
 # Title of the Streamlit app
